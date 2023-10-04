@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,8 +9,15 @@ import 'package:trustdine/screens/Drinks/DrinksPage.dart';
 import 'package:trustdine/screens/Pizza/PizzaPage.dart';
 import 'package:trustdine/screens/home/home_screen.dart';
 import 'package:trustdine/theme.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  // initializeFirebase();
   runApp(MyApp());
 }
 

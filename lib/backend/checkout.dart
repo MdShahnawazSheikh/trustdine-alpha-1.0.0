@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trustdine/backend/cartManager.dart';
 import 'package:trustdine/backend/cashPage.dart';
 import 'package:trustdine/backend/paymentSuccessPage.dart';
+import 'package:trustdine/main.dart';
 
 class CheckOutPage extends StatefulWidget {
-  final double paymentAmount;
-  const CheckOutPage({required this.paymentAmount, super.key});
+  final double paymentAmount, logoWidth;
+  const CheckOutPage({
+    required this.paymentAmount,
+    super.key,
+    required this.logoWidth,
+  });
 
   @override
   State<CheckOutPage> createState() => _CheckOutPageState();
@@ -23,10 +29,14 @@ class _CheckOutPageState extends State<CheckOutPage> {
       msg: "Payment Successfull\nPayment ID: ${response.paymentId}",
       timeInSecForIosWeb: 4,
     );
+
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => PaymentSuccessPage(orderId: (paymentId)),
+        builder: (context) => PaymentSuccessPage(
+          orderId: (paymentId),
+          logoWidth: widget.logoWidth,
+        ),
       ),
     );
     CartManager().pushCartToFirestore(paymentId);
@@ -59,7 +69,10 @@ class _CheckOutPageState extends State<CheckOutPage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => CashPayment(orderId: (orderID)),
+        builder: (context) => CashPayment(
+          orderId: (orderID),
+          logoWidth: widget.logoWidth,
+        ),
       ),
     );
     CartManager().pushCartToFirestore(orderID);
