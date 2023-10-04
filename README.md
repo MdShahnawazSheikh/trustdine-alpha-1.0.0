@@ -7,18 +7,19 @@ Welcome to TrustDine, your ultimate solution for hassle-free restaurant food ord
 - **User-Friendly Interface**: Intuitive design for effortless navigation and seamless ordering.
 - **Menu Customization**: Tailor your orders to perfection with our easy customization options.
 - **Secure Payments**: Enjoy peace of mind with our secure payment gateway, ensuring your transactions are safe.
-- **Real-Time Updates**: Receive instant notifications about your order status, from preparation to delivery.
+<!-- - **Real-Time Updates**: Receive instant notifications about your order status, from preparation to delivery. -->
 - **Multiple Restaurants**: Explore a variety of restaurants and cuisines, all in one app.
-- **Order History**: Keep track of your past orders for quick reordering and favorite selections.
+- **Cloud Order History**: Keep track of your past orders from anywhere just by scanning the QR.
 
 ## How It Works
 
-1. **Select Restaurant**: Choose your preferred restaurant from our curated list.
+1. **Select Your Category**: Choose your preferred Category of food from our curated list.
 2. **Browse Menu**: Explore the menu items, including detailed descriptions and prices.
 3. **Customize Your Order**: Add items to your cart and customize them according to your preferences.
 4. **Secure Checkout**: Review your order, make any final adjustments, and proceed to secure payment.
-5. **Receive Order Updates**: Stay informed with real-time updates on your order's progress.
-6. **Enjoy Your Meal**: Your delicious meal will be prepared and delivered to you in no time!
+5. **Receive Order QR in a Receipt**: Receive your order details in a QR code on a receipt.
+6. **Show Your Receipt**: Present your receipt at the counter and get our order verified.
+7. **Enjoy Your Meal**: Your delicious meal will be prepared in no time!
 
 ## Installation
 
