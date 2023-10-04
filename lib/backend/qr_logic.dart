@@ -9,7 +9,7 @@ class GenerateQr extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     return QrImageView(
-      data: this.data,
+      data: data,
       version: QrVersions.auto,
       // size: 200.0,
       size: screenHeight / 5,

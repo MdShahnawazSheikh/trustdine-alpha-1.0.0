@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:trustdine/backend/cartManager.dart';
 
 class cartCard extends StatelessWidget {
   const cartCard({
@@ -48,7 +47,7 @@ class cartCard extends StatelessWidget {
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
+          SizedBox(
             width: screenWidth / 3.6,
             child: Text(
               "Quantity: $quantity\nPrice: ₹ $price\nSize: $size",

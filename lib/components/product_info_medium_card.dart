@@ -24,14 +24,14 @@ class ProductInfoMediumCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(6),
       onTap: () {
         final productToAdd = AddedProduct(
-            this.productName, this.price, 1, this.image, this.size);
+            productName, price, 1, image, size);
         // Add the product to the cart using CartManager
         CartManager().addProduct(productToAdd);
         // String productName = widget.productName;
         // String imagePath = widget.imagePath;
 
         Fluttertoast.showToast(
-          msg: "${productName} added to cart.",
+          msg: "$productName added to cart.",
         );
         print(CartManager().addedProducts.length);
       },
@@ -57,7 +57,7 @@ class ProductInfoMediumCard extends StatelessWidget {
               productName,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(
               height: 3,

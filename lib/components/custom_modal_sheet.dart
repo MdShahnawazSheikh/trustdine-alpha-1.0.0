@@ -28,16 +28,16 @@ Future<dynamic> CustomModalSheet(
           right: 8,
           left: 8,
         ),
-        child: Container(
+        child: SizedBox(
           height: 500,
           child: SingleChildScrollView(
             child: Column(
               children: [
                 Text(
                   sheetTitle,
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 GridView.builder(

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:trustdine/components/ProductCardTwoRow.dart';
 import 'package:trustdine/components/app_bar.dart';
 import 'package:trustdine/components/custom_modal_sheet.dart';
 import 'package:trustdine/components/image_carousel.dart';
@@ -8,7 +6,6 @@ import 'package:trustdine/components/product_info_medium_card.dart';
 import 'package:trustdine/components/section_title.dart';
 import 'package:trustdine/constants.dart';
 import 'package:trustdine/demoData.dart';
-import 'package:trustdine/screens/featured/featured_page.dart';
 
 class HomeScreen extends StatefulWidget {
   final double logoWidth;

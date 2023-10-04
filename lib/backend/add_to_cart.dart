@@ -6,12 +6,12 @@ class AddRemoveButton extends StatefulWidget {
   final String productName;
   final double price;
   final String productSize;
-  AddRemoveButton(
+  const AddRemoveButton(
       {required this.imagePath,
       required this.productName,
       required this.price,
       required this.productSize,
-      super.key}) {}
+      super.key});
   @override
   _AddRemoveButtonState createState() => _AddRemoveButtonState();
 }
@@ -48,7 +48,7 @@ class _AddRemoveButtonState extends State<AddRemoveButton> {
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
     return Container(
-      decoration: BoxDecoration(shape: BoxShape.rectangle),
+      decoration: const BoxDecoration(shape: BoxShape.rectangle),
       child: Column(
         // mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -80,7 +80,7 @@ class _AddRemoveButtonState extends State<AddRemoveButton> {
                     String imagePath = widget.imagePath;
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
+                    backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.01),
                     ),

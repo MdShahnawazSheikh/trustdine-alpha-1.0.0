@@ -15,7 +15,7 @@ class _DrinksPageState extends State<DrinksPage> {
     return Scaffold(
       body: CustomScrollView(slivers: [
         CustomSliverAppBar(logoWidth: widget.logoWidth),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: Center(
             child: Text("Drinks Page"),
           ),

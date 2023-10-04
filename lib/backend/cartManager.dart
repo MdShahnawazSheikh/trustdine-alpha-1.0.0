@@ -3,7 +3,7 @@ import 'package:trustdine/backend/database_manager.dart';
 class CartManager {
   // List to store added products
 
-  List<AddedProduct> _addedProducts = [];
+  final List<AddedProduct> _addedProducts = [];
 
   // Getter for accessing addedProducts
   List<AddedProduct> get addedProducts => _addedProducts;

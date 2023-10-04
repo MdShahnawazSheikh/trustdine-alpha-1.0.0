@@ -6,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trustdine/backend/cartManager.dart';
 import 'package:trustdine/backend/cashPage.dart';
 import 'package:trustdine/backend/paymentSuccessPage.dart';
-import 'package:trustdine/main.dart';
 
 class CheckOutPage extends StatefulWidget {
   final double paymentAmount, logoWidth;
@@ -63,7 +62,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
   void _handleCashPayment(String cashOrderID) {
     final orderID = cashOrderID;
     Fluttertoast.showToast(
-      msg: "Order Confirmed!\nOrder ID: ${orderID}",
+      msg: "Order Confirmed!\nOrder ID: $orderID",
       timeInSecForIosWeb: 4,
     );
     Navigator.pushReplacement(
@@ -117,7 +116,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
     } catch (e) {
       ScaffoldMessenger.of(context).showMaterialBanner(MaterialBanner(
           content: Text(e.toString()),
-          actions: [ElevatedButton(onPressed: () {}, child: Text("Close"))]));
+          actions: [ElevatedButton(onPressed: () {}, child: const Text("Close"))]));
     }
   }
 

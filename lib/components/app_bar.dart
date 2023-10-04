@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomSliverAppBar extends StatelessWidget {
   final double logoWidth;
 
-  const CustomSliverAppBar({required this.logoWidth});
+  const CustomSliverAppBar({super.key, required this.logoWidth});
 
   @override
   Widget build(BuildContext context) {

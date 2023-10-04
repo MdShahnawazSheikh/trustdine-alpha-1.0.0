@@ -17,11 +17,11 @@ class SectionTitle extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Text(
         title,
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.titleLarge,
       ),
       TextButton(
           onPressed: press,
-          style: TextButton.styleFrom(primary: kActiveColor),
+          style: TextButton.styleFrom(foregroundColor: kActiveColor),
           child: Text(buttonText))
     ]);
   }
@@ -41,7 +41,7 @@ class SectionTitleNoButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.headline6,
+      style: Theme.of(context).textTheme.titleLarge,
     );
   }
 }

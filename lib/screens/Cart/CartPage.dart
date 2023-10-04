@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -9,7 +8,6 @@ import 'package:trustdine/components/cart_card.dart';
 import 'package:trustdine/components/section_title.dart';
 import 'package:trustdine/constants.dart';
 import 'package:trustdine/main.dart';
-import 'package:trustdine/screens/home/home_screen.dart';
 
 class CartPage extends StatefulWidget {
   final double logoWidth;
@@ -28,11 +26,11 @@ class _CartPageState extends State<CartPage> {
         screenHeight > screenWidth ? (screenWidth / 4) : (screenHeight / 4);
     return Scaffold(
       body: CustomScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
+        physics: const AlwaysScrollableScrollPhysics(),
         slivers: [
           CustomSliverAppBar(logoWidth: widget.logoWidth),
           SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
             sliver: SliverToBoxAdapter(
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +43,7 @@ class _CartPageState extends State<CartPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MyApp(),
+                            builder: (context) => const MyApp(),
                           ));
                       double finalPrice = double.parse(CartManager()
                           .calculateTotalPrice()
@@ -70,7 +68,7 @@ class _CartPageState extends State<CartPage> {
                   "Grand Total: ₹ ${CartManager().calculateTotalPrice().toStringAsFixed(2)}",
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
               ],
@@ -135,10 +133,10 @@ class _CartPageState extends State<CartPage> {
                 )
               : SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.all(defaultPadding),
+                    padding: const EdgeInsets.all(defaultPadding),
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                         ),
                         SvgPicture.asset(
@@ -150,7 +148,7 @@ class _CartPageState extends State<CartPage> {
                         Text(
                           "Your cart is empty...\nTry adding some delicious foods!",
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.titleLarge,
                         )
                       ],
                     ),

@@ -28,12 +28,12 @@ class ProductCardTwoRow extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         final productToAdd =
-            AddedProduct(this.name, this.price, 1, this.image, this.size);
+            AddedProduct(name, price, 1, image, size);
         // Add the product to the cart using CartManager
         CartManager().addProduct(productToAdd);
         // String productName = widget.productName;
         // String imagePath = widget.imagePath;
-        Fluttertoast.showToast(msg: "${name} added to cart.");
+        Fluttertoast.showToast(msg: "$name added to cart.");
         print(CartManager().addedProducts.length);
       },
       child: Container(
@@ -62,13 +62,13 @@ class ProductCardTwoRow extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       //Title Text:
-                      Container(
+                      SizedBox(
                         width: cardHeight / 2.5,
                         child: Text(
                           name,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
                       Container(
@@ -98,7 +98,7 @@ class ProductCardTwoRow extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         width: screenHeight > screenWidth
                             ? (cardHeight / 3)
                             : (cardHeight / 2),
