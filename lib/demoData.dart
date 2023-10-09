@@ -165,3 +165,6 @@ List<Map<String, dynamic>> demoPizzaData = [
     "category": 'Veg Pizza',
   },
 ];
+
+List<Map<String, dynamic>> PizzaData = [];
+List<Map<String, dynamic>> BurgerData = [];

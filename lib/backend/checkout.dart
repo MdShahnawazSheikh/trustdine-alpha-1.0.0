@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trustdine/backend/cartManager.dart';
@@ -116,7 +115,9 @@ class _CheckOutPageState extends State<CheckOutPage> {
     } catch (e) {
       ScaffoldMessenger.of(context).showMaterialBanner(MaterialBanner(
           content: Text(e.toString()),
-          actions: [ElevatedButton(onPressed: () {}, child: const Text("Close"))]));
+          actions: [
+            ElevatedButton(onPressed: () {}, child: const Text("Close"))
+          ]));
     }
   }
 

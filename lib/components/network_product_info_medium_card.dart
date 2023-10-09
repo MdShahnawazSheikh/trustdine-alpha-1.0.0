@@ -1,10 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trustdine/backend/cartManager.dart';
 import 'package:trustdine/constants.dart';
 
-class ProductInfoMediumCard extends StatelessWidget {
-  const ProductInfoMediumCard({
+class NetworkProductInfoMediumCard extends StatelessWidget {
+  const NetworkProductInfoMediumCard({
     super.key,
     required this.productName,
     required this.image,
@@ -43,9 +44,15 @@ class ProductInfoMediumCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: AspectRatio(
                 aspectRatio: 1.25,
-                child: Image.asset(
-                  image,
+                child: CachedNetworkImage(
+                  // Use CachedNetworkImage widget instead of Image.asset
+                  imageUrl: image, // Provide the internet image URL here
                   fit: BoxFit.cover,
+                  placeholder: (context, url) => Center(
+                      child:
+                          CircularProgressIndicator()), // Loading indicator while the image is being fetched
+                  errorWidget: (context, url, error) => Icon(
+                      Icons.error), // Error widget if the image fails to load
                 ),
               ),
             ),

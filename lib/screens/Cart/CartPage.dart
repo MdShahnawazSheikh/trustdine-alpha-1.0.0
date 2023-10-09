@@ -5,6 +5,7 @@ import 'package:trustdine/backend/cartManager.dart';
 import 'package:trustdine/backend/checkout.dart';
 import 'package:trustdine/components/app_bar.dart';
 import 'package:trustdine/components/cart_card.dart';
+import 'package:trustdine/components/cart_card_network.dart';
 import 'package:trustdine/components/section_title.dart';
 import 'package:trustdine/constants.dart';
 import 'package:trustdine/main.dart';
@@ -28,7 +29,9 @@ class _CartPageState extends State<CartPage> {
       body: CustomScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         slivers: [
-          CustomSliverAppBar(logoWidth: widget.logoWidth),
+          CustomSliverAppBar(
+            logoWidth: widget.logoWidth,
+          ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
             sliver: SliverToBoxAdapter(
@@ -110,7 +113,7 @@ class _CartPageState extends State<CartPage> {
                             right: defaultPadding,
                             left: defaultPadding,
                             bottom: 6.0),
-                        child: cartCard(
+                        child: NetworkCartCard(
                           imgSize: imgSize,
                           image: CartManager().addedProducts[index].imagePath,
                           title: CartManager().addedProducts[index].productName,
