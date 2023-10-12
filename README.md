@@ -38,7 +38,7 @@ We welcome contributions from the community! If you find a bug or have suggestio
 
 ## License
 
-TrustDine Kiosk Android App is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute this code for your projects.
+TrustDine Kiosk Android App is strictly a private product. Any type of modifications and distribution of this code is strictly prohibited.
 
 ---
 
