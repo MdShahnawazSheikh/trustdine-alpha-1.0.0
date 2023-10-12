@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -5,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trustdine/backend/cartManager.dart';
 import 'package:trustdine/backend/cashPage.dart';
 import 'package:trustdine/backend/paymentSuccessPage.dart';
+import 'package:trustdine/printer/printer_utils.dart';
 
 class CheckOutPage extends StatefulWidget {
   final double paymentAmount, logoWidth;
@@ -23,6 +26,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
 
   void _handleSuccessfullPayment(PaymentSuccessResponse response) {
     final paymentId = response.paymentId.toString();
+
     Fluttertoast.showToast(
       msg: "Payment Successfull\nPayment ID: ${response.paymentId}",
       timeInSecForIosWeb: 4,
@@ -38,7 +42,20 @@ class _CheckOutPageState extends State<CheckOutPage> {
       ),
     );
     CartManager().pushCartToFirestore(paymentId);
-    CartManager().clearCart();
+    printReceipt(paymentId);
+    Timer(Duration(seconds: 5), () {
+      CartManager().clearCart();
+    });
+  }
+
+  void printReceipt(String orderID) async {
+    List<AddedProduct> cartItems = CartManager()
+        .addedProducts; // Retrieve the cart items from your CartManager
+    double totalAmount = CartManager()
+        .calculateTotalPrice(); // Calculate total price from CartManager
+
+    await PrinterUtils()
+        .printRestaurantReceipt("TrustDine", orderID, cartItems, totalAmount);
   }
 
   // Cash Payment
@@ -74,7 +91,10 @@ class _CheckOutPageState extends State<CheckOutPage> {
       ),
     );
     CartManager().pushCartToFirestore(orderID);
-    CartManager().clearCart();
+    printReceipt(orderID);
+    Timer(Duration(seconds: 5), () {
+      CartManager().clearCart();
+    });
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
@@ -128,86 +148,88 @@ class _CheckOutPageState extends State<CheckOutPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'TrustSign',
-                style: TextStyle(
-                  fontFamily: "Sedwig",
-                  fontSize: 70,
-                  color: Colors.blue,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'TrustSign',
+                  style: TextStyle(
+                    fontFamily: "Sedwig",
+                    fontSize: 70,
+                    color: Colors.blue,
+                  ),
                 ),
-              ),
-              /* SizedBox(
-                height: 1,
-              ), */
-              /* Text(
-                "Checkout",
-                style: TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey.shade600),
-                textAlign: TextAlign.center,
-              ), */
-              const SizedBox(
-                height: 200,
-              ),
-              Text(
-                "Thank You for your order\nChoose a payment method",
-                style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.grey.shade600),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              GestureDetector(
-                child: const CheckoutButton(
-                    yourText: "Pay with Razorpay",
-                    yourIcon: FontAwesomeIcons.indianRupeeSign,
-                    buttonColor: Color.fromARGB(255, 136, 0, 255),
-                    textColor: Color.fromARGB(255, 255, 255, 255)),
-                onTap: () {
-                  print("tapped");
-                  makePayment();
-                },
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              GestureDetector(
-                child: const CheckoutButton(
-                    yourText: "Pay with Cash",
-                    yourIcon: FontAwesomeIcons.moneyCheckDollar,
-                    buttonColor: Colors.grey,
-                    textColor: Color.fromARGB(255, 255, 255, 255)),
-                onTap: () {
-                  _handleCashPayment(generateHexCode());
-                },
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              GestureDetector(
-                child: const CheckoutButton(
-                    yourText: "Pay with",
-                    yourIcon: FontAwesomeIcons.applePay,
-                    buttonColor: Color.fromARGB(255, 0, 0, 0),
-                    textColor: Color.fromARGB(255, 255, 255, 255)),
-                onTap: () {
-                  Fluttertoast.showToast(
-                    msg: "Coming Soon",
-                    timeInSecForIosWeb: 4,
-                  );
-                },
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-            ],
+                /* SizedBox(
+                  height: 1,
+                ), */
+                /* Text(
+                  "Checkout",
+                  style: TextStyle(
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade600),
+                  textAlign: TextAlign.center,
+                ), */
+                const SizedBox(
+                  height: 100,
+                ),
+                Text(
+                  "Thank You for your order\nChoose a payment method",
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey.shade600),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                GestureDetector(
+                  child: const CheckoutButton(
+                      yourText: "Pay with Razorpay",
+                      yourIcon: FontAwesomeIcons.indianRupeeSign,
+                      buttonColor: Color.fromARGB(255, 136, 0, 255),
+                      textColor: Color.fromARGB(255, 255, 255, 255)),
+                  onTap: () {
+                    print("tapped");
+                    makePayment();
+                  },
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                GestureDetector(
+                  child: const CheckoutButton(
+                      yourText: "Pay with Cash",
+                      yourIcon: FontAwesomeIcons.moneyCheckDollar,
+                      buttonColor: Colors.grey,
+                      textColor: Color.fromARGB(255, 255, 255, 255)),
+                  onTap: () {
+                    _handleCashPayment(generateHexCode());
+                  },
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                GestureDetector(
+                  child: const CheckoutButton(
+                      yourText: "Pay with",
+                      yourIcon: FontAwesomeIcons.applePay,
+                      buttonColor: Color.fromARGB(255, 0, 0, 0),
+                      textColor: Color.fromARGB(255, 255, 255, 255)),
+                  onTap: () {
+                    Fluttertoast.showToast(
+                      msg: "Coming Soon",
+                      timeInSecForIosWeb: 4,
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+              ],
+            ),
           ),
         ),
       ),

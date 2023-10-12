@@ -5,13 +5,35 @@ import 'package:trustdine/demoData.dart';
 
 Future<void> fetchData() async {
   Map<String, dynamic> userData = await loginUser("admin@gmail.com", "admin");
-
   String token = userData['authtoken'];
+
+  if (PizzaData.length > 0) {
+    PizzaData.clear();
+    PizzaVeg.clear();
+    PizzaNonVeg.clear();
+  }
+  if (BurgerData.length > 0) {
+    BurgerData.clear();
+    BurgerVeg.clear();
+    BurgerNonVeg.clear();
+  }
+  if (CarouselData.length > 0) {
+    CarouselData.clear();
+  }
+  if (FeaturedFoods.length > 0) {
+    FeaturedFoods.clear();
+  }
+  if (SpotlightFoods.length > 0) {
+    SpotlightFoods.clear();
+  }
   final response = await fetchAllFoods(
       token); // Replace 'API_ENDPOINT' with the actual API endpoint
-  // print(response);
+  final carousels = await fetchAllCarousel(token);
 
   try {
+    for (var item in carousels) {
+      CarouselData.add(item['carouselImage']);
+    }
     for (var food in response) {
       Map<String, dynamic> foodData = {
         'name': food['foodName'],
@@ -21,12 +43,35 @@ Future<void> fetchData() async {
         'price': double.parse(food['foodPrice']),
         'category': food['categoryName'],
         'id': food['_id'],
+        'type': food['foodType'],
+        'featured': food['featured'],
+        'spotlight': food['spotlight']
       };
+      if (foodData['featured'] == true) {
+        FeaturedFoods.add(foodData);
+      }
+      if (foodData['spotlight'] == true) {
+        SpotlightFoods.add(foodData);
+      }
 
       if (food['categoryName'] == 'Pizza') {
         PizzaData.add(foodData);
+        if (food['foodType'] == 'veg' ||
+            food['foodType'] == "Veg" ||
+            food['foodType'] == "VEG") {
+          PizzaVeg.add(foodData);
+        } else {
+          PizzaNonVeg.add(foodData);
+        }
       } else if (food['categoryName'] == 'Burger') {
         BurgerData.add(foodData);
+        if (food['foodType'] == 'veg' ||
+            food['foodType'] == "Veg" ||
+            food['foodType'] == "VEG") {
+          BurgerVeg.add(foodData);
+        } else {
+          BurgerNonVeg.add(foodData);
+        }
       }
     }
     // print(PizzaData);
@@ -47,33 +92,6 @@ bool checkExisting(String iD, List data) {
 void refreshData() async {
   PizzaData.clear();
   BurgerData.clear();
+  CarouselData.clear();
   await fetchData();
-  /*  // print(response);
-
-  try {
-    for (var food in response) {
-      if (checkExisting(food['id'], PizzaData)) {
-        print('List ID: ${food['id']} - Your ID: $');
-        //do nothing
-      } else {
-        Map<String, dynamic> foodData = {
-          'name': food['foodName'],
-          'image': food['foodImg'],
-          'rating': food['foodDiscount'],
-          'size': food['foodSize'],
-          'price': double.parse(food['foodPrice']),
-          'category': food['categoryName'],
-          'id': food['_id'],
-        };
-        if (food['categoryName'] == 'Pizza') {
-          PizzaData.add(foodData);
-        } else if (food['categoryName'] == 'Burger') {
-          BurgerData.add(foodData);
-        }
-      }
-    }
-    // print(PizzaData);
-  } catch (e) {
-    print(e);
-  } */
 }

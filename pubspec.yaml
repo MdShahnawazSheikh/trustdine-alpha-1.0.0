@@ -47,6 +47,8 @@ dependencies:
   http: ^1.1.0
   phone_pe_pg: ^0.0.5
   cached_network_image: ^3.3.0
+  device_preview: ^1.1.0
+  blue_thermal_printer: ^1.2.3
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +78,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/illustrations/
+    - assets/font/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -89,10 +92,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Autour
+      fonts:
+        - asset: assets/font/AutourOne-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

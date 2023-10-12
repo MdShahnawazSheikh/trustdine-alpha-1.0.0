@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trustdine/backend/fetchfoods.dart';
+import 'package:trustdine/backend/api_data.dart';
 import 'package:trustdine/components/NetworkProductCardTwoRow.dart';
 import 'package:trustdine/components/ProductCardTwoRow.dart';
 import 'package:trustdine/components/app_bar.dart';
@@ -49,18 +49,18 @@ class _PizzaPageState extends State<PizzaPage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: List.generate(
-                  4,
+                  PizzaVeg.length,
                   (index) => Padding(
                     padding: const EdgeInsets.only(
                         left: defaultPadding / 1.2, right: 10),
                     child: NetworkProductInfoMediumCard(
-                      productName: PizzaData[index]['name'],
-                      image: PizzaData[index]['image'],
+                      productName: PizzaVeg[index]['name'],
+                      image: PizzaVeg[index]['image'],
                       press: () {},
-                      rating: PizzaData[index]['rating'],
-                      size: PizzaData[index]['size'],
-                      price: PizzaData[index]['price'],
-                      category: PizzaData[index]['category'],
+                      rating: PizzaVeg[index]['rating'],
+                      size: PizzaVeg[index]['size'],
+                      price: PizzaVeg[index]['price'],
+                      category: PizzaVeg[index]['category'],
                     ),
                   ),
                 ),
@@ -82,18 +82,18 @@ class _PizzaPageState extends State<PizzaPage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: List.generate(
-                  4,
+                  PizzaNonVeg.length,
                   (index) => Padding(
                     padding: const EdgeInsets.only(
                         left: defaultPadding / 1.2, right: 10),
                     child: NetworkProductInfoMediumCard(
-                      productName: PizzaData[index]['name'],
-                      image: PizzaData[index]['image'],
+                      productName: PizzaNonVeg[index]['name'],
+                      image: PizzaNonVeg[index]['image'],
                       press: () {},
-                      rating: PizzaData[index]['rating'],
-                      size: PizzaData[index]['size'],
-                      price: PizzaData[index]['price'],
-                      category: PizzaData[index]['category'],
+                      rating: PizzaNonVeg[index]['rating'],
+                      size: PizzaNonVeg[index]['size'],
+                      price: PizzaNonVeg[index]['price'],
+                      category: PizzaNonVeg[index]['category'],
                     ),
                   ),
                 ),
@@ -122,8 +122,9 @@ class _PizzaPageState extends State<PizzaPage> {
                     crossAxisCount: 2,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
-                    mainAxisExtent:
-                        screenHeight > screenWidth ? 250 : cardHeight,
+                    mainAxisExtent: screenHeight > screenWidth
+                        ? (screenHeight / 3)
+                        : screenHeight / 1.5,
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return NetworkProductCardTwoRow(

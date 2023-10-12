@@ -167,4 +167,11 @@ List<Map<String, dynamic>> demoPizzaData = [
 ];
 
 List<Map<String, dynamic>> PizzaData = [];
+List<Map<String, dynamic>> PizzaVeg = [];
+List<Map<String, dynamic>> PizzaNonVeg = [];
 List<Map<String, dynamic>> BurgerData = [];
+List<Map<String, dynamic>> BurgerVeg = [];
+List<Map<String, dynamic>> BurgerNonVeg = [];
+List<Map<String, dynamic>> FeaturedFoods = [];
+List<Map<String, dynamic>> SpotlightFoods = [];
+List CarouselData = [];

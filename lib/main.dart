@@ -1,10 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trustdine/backend/central_api.dart';
-import 'package:trustdine/backend/fetchfoods.dart';
+import 'package:trustdine/backend/api_data.dart';
 import 'package:trustdine/screens/Burger/BurgerPage.dart';
 import 'package:trustdine/screens/Cart/CartPage.dart';
 import 'package:trustdine/screens/Drinks/DrinksPage.dart';
@@ -12,21 +13,33 @@ import 'package:trustdine/screens/Pizza/PizzaPage.dart';
 import 'package:trustdine/screens/home/home_screen.dart';
 import 'package:trustdine/theme.dart';
 import 'firebase_options.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() async {
-  fetchData();
+  // fetchData();
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   // initializeFirebase();
+  /* runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp(), // Wrap your app
+    ),
+  ); */
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     // print(loginUser("admin@gmail.com", "admin")); //need help printing here
@@ -35,6 +48,11 @@ class MyApp extends StatelessWidget {
     ));
 
     return MaterialApp(
+      /* useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(), */
       debugShowCheckedModeBanner: false,
       title: 'TrustDine',
       theme: buildThemeData(),

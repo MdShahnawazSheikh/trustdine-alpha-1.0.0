@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trustdine/components/NetworkProductCardTwoRow.dart';
 import 'package:trustdine/components/ProductCardTwoRow.dart';
 
 Future<dynamic> CustomModalSheet(
@@ -9,6 +10,7 @@ Future<dynamic> CustomModalSheet(
   String sheetTitle,
   List<Map<String, dynamic>> yourData,
 ) {
+  double sheetHeight = screenHeight / 1.2;
   return showModalBottomSheet(
     enableDrag: true,
     // barrierLabel: text,
@@ -29,7 +31,7 @@ Future<dynamic> CustomModalSheet(
           left: 8,
         ),
         child: SizedBox(
-          height: 500,
+          height: sheetHeight,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -48,11 +50,12 @@ Future<dynamic> CustomModalSheet(
                     crossAxisCount: 2,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
-                    mainAxisExtent:
-                        screenHeight > screenWidth ? 250 : cardHeight,
+                    mainAxisExtent: sheetHeight > screenWidth
+                        ? (sheetHeight / 2.5)
+                        : sheetHeight / 1.5,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    return ProductCardTwoRow(
+                    return NetworkProductCardTwoRow(
                         onPress: () {},
                         image: yourData[index]['image'],
                         name: yourData[index]['name'],

@@ -77,33 +77,6 @@ class _CartPageState extends State<CartPage> {
               ],
             )),
           ),
-          /* SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-            sliver: SliverToBoxAdapter(
-              child: SingleChildScrollView(
-                child: SizedBox(
-                  height: screenHeight,
-                  child: ListView.builder(
-                    itemCount: CartManager().addedProducts.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 6.0),
-                        child: cartCard(
-                          imgSize: imgSize,
-                          image: CartManager().addedProducts[index].imagePath,
-                          title: CartManager().addedProducts[index].productName,
-                          price: CartManager().addedProducts[index].price,
-                          quantity: CartManager().addedProducts[index].quantity,
-                          size: CartManager().addedProducts[index].size,
-                          screenWidth: screenWidth,
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ), */
           CartManager().addedProducts.isNotEmpty
               ? SliverList(
                   delegate: SliverChildBuilderDelegate(

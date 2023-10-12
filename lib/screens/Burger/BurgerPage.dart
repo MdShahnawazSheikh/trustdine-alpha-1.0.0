@@ -45,18 +45,18 @@ class _BurgerPageState extends State<BurgerPage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: List.generate(
-                  4,
+                  BurgerVeg.length,
                   (index) => Padding(
                     padding: const EdgeInsets.only(
                         left: defaultPadding / 1.2, right: 10),
                     child: NetworkProductInfoMediumCard(
-                      productName: BurgerData[index]['name'],
-                      image: BurgerData[index]['image'],
+                      productName: BurgerVeg[index]['name'],
+                      image: BurgerVeg[index]['image'],
                       press: () {},
-                      rating: BurgerData[index]['rating'],
-                      size: BurgerData[index]['size'],
-                      price: BurgerData[index]['price'],
-                      category: BurgerData[index]['category'],
+                      rating: BurgerVeg[index]['rating'],
+                      size: BurgerVeg[index]['size'],
+                      price: BurgerVeg[index]['price'],
+                      category: BurgerVeg[index]['category'],
                     ),
                   ),
                 ),
@@ -78,18 +78,18 @@ class _BurgerPageState extends State<BurgerPage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: List.generate(
-                  4,
+                  BurgerNonVeg.length,
                   (index) => Padding(
                     padding: const EdgeInsets.only(
                         left: defaultPadding / 1.2, right: 10),
                     child: NetworkProductInfoMediumCard(
-                      productName: BurgerData[index]['name'],
-                      image: BurgerData[index]['image'],
+                      productName: BurgerNonVeg[index]['name'],
+                      image: BurgerNonVeg[index]['image'],
                       press: () {},
-                      rating: BurgerData[index]['rating'],
-                      size: BurgerData[index]['size'],
-                      price: BurgerData[index]['price'],
-                      category: BurgerData[index]['category'],
+                      rating: BurgerNonVeg[index]['rating'],
+                      size: BurgerNonVeg[index]['size'],
+                      price: BurgerNonVeg[index]['price'],
+                      category: BurgerNonVeg[index]['category'],
                     ),
                   ),
                 ),
@@ -118,8 +118,9 @@ class _BurgerPageState extends State<BurgerPage> {
                     crossAxisCount: 2,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
-                    mainAxisExtent:
-                        screenHeight > screenWidth ? 250 : cardHeight,
+                    mainAxisExtent: screenHeight > screenWidth
+                        ? (screenHeight / 3)
+                        : screenHeight / 1.5,
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return NetworkProductCardTwoRow(

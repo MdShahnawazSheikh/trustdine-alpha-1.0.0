@@ -47,6 +47,7 @@ class NetworkProductCardTwoRow extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: CachedNetworkImage(
+                width: double.infinity,
                 // Use CachedNetworkImage widget instead of Image.asset
                 imageUrl: image, // Provide the internet image URL here
                 fit: BoxFit.cover,
